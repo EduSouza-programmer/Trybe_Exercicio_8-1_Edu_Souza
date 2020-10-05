@@ -115,4 +115,4 @@ function booksOrderedByReleaseYearDesc() {
   return booksReleaseYear;
 }
 
-assert.deepEqual(booksOrderedByReleaseYearDesc(), expected_result);
+assert.deepStrictEqual(booksOrderedByReleaseYearDesc(), expected_result);
