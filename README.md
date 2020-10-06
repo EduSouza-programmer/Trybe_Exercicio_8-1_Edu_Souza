@@ -54,7 +54,7 @@ Estes exercícios praticam os conceitos de Higher Order Functions associados a o
 
 - <p><a href="#6">6.</a> Faça uma função que retorne true, se algum livro foi lançado na década de 80, e false, caso contrário;</p>
 
-- <p><a href="#7">7.</a> Encontre o nome da primeira pessoa autora do livro nascida no ano de 1947;</p>
+- <p><a href="#7">7.</a> Faça uma função que retorne true, caso nenhum author tenha nascido no mesmo ano, e false, caso contrário;</p>
 
 #
 
@@ -695,13 +695,94 @@ assert.strict(someBookWasReleaseOnThe80s(), expected_result);
 
 ### 7°
 
+Faça uma função que retorne true, caso nenhum author tenha nascido no mesmo ano, e false, caso contrário.
+
 #### Resposta:
 
 <details>
  <summary>Código Javascript</summary>
 
 ```js
+const assert = require("assert");
 
+const books = [
+	{
+		id: 1,
+		name: "As Crônicas de Gelo e Fogo",
+		genre: "Fantasia",
+		author: {
+			name: "George R. R. Martin",
+			birthYear: 1948,
+		},
+		releaseYear: 1991,
+	},
+	{
+		id: 2,
+		name: "O Senhor dos Anéis",
+		genre: "Fantasia",
+		author: {
+			name: "J. R. R. Tolkien",
+			birthYear: 1892,
+		},
+		releaseYear: 1954,
+	},
+	{
+		id: 3,
+		name: "Fundação",
+		genre: "Ficção Científica",
+		author: {
+			name: "Isaac Asimov",
+			birthYear: 1920,
+		},
+		releaseYear: 1951,
+	},
+	{
+		id: 4,
+		name: "Duna",
+		genre: "Ficção Científica",
+		author: {
+			name: "Frank Herbert",
+			birthYear: 1920,
+		},
+		releaseYear: 1965,
+	},
+	{
+		id: 5,
+		name: "A Coisa",
+		genre: "Terror",
+		author: {
+			name: "Stephen King",
+			birthYear: 1947,
+		},
+		releaseYear: 1986,
+	},
+	{
+		id: 6,
+		name: "O Chamado de Cthulhu",
+		genre: "Terror",
+		author: {
+			name: "H. P. Lovecraft",
+			birthYear: 1890,
+		},
+		releaseYear: 1928,
+	},
+];
+
+const expected_result = false;
+
+function authorUnique() {
+	const isAuthorBornEqual = books.every(
+		(everyBook) =>
+			!books.some(
+				(someBook) =>
+					someBook.author.birthYear === everyBook.author.birthYear &&
+					someBook.id !== everyBook.id
+			)
+	);
+	return isAuthorBornEqual;
+}
+
+assert.equal(authorUnique(), expected_result);
 ```
 
 </details>
